@@ -14,7 +14,7 @@ RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenki
 #RUN  curl -L -o /tmp/ssh-credentials.hpi http://updates.jenkins-ci.org/latest/ssh-credentials.hpi
 #RUN  curl -L -o /tmp/credentials.hpi http://updates.jenkins-ci.org/latest/credentials.hpi
 
-RUN cd /usr/share/jenkins/ref/init.groovy.d/ && curl -O https://raw.githubusercontent.com/Kong/jenkins/master/executors.groovy  &&\
+RUN curl  https://raw.githubusercontent.com/Kong/jenkins/master/executors.groovy  -o /usr/share/jenkins/ref/init.groovy.d/executors.groovy &&\
     echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state &&\
     cd /usr/share/jenkins/ref/ && curl -O https://raw.githubusercontent.com/Kong/jenkins/master/plugins.txt  &&\
 	/usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
