@@ -21,7 +21,7 @@ RUN  echo "export JENKINS_HOME=/var/lib/jenkins/" >> /etc/profile && source /etc
       curl -L -o /var/lib/jenkins/plugins/scm-api.hpi http://updates.jenkins-ci.org/latest/scm-api.hpi &&\
       curl -L -o /var/lib/jenkins/plugins/ssh-credentials.hpi http://updates.jenkins-ci.org/latest/ssh-credentials.hpi &&\
       curl -L -o /var/lib/jenkins/plugins/credentials.hpi http://updates.jenkins-ci.org/latest/credentials.hpi &&\
-      mkdir -p /var/lib/jenkins/.ssh ;  printf "Host * \nUserKnownHostsFile /dev/null \nStrictHostKeyChecking no" >> /var/lib/jenkins/.ssh/config 
+      mkdir -p /var/lib/jenkins/.ssh &&  printf "Host * \nUserKnownHostsFile /dev/null \nStrictHostKeyChecking no" >> /var/lib/jenkins/.ssh/config 
 
 
 
