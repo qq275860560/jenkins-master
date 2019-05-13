@@ -2,7 +2,7 @@ FROM qq275860560/base
 
 MAINTAINER jiangyuanlin@163.com
 
-# jenkins
+# jenkins http://mirrors.jenkins-ci.org/war/latest/jenkins.war 
 RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo && \
   rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key && \
   yum -y  install  jenkins && yum -y update jenkins &&\
