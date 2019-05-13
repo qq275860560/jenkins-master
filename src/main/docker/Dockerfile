@@ -29,7 +29,7 @@ RUN  echo "export JENKINS_HOME=/var/lib/jenkins/" >> /etc/profile && source /etc
 
 
 #ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
-RUN mkdir -pv /usr/share/jenkins/ref/ curl  https://raw.githubusercontent.com/fabric8io/jenkins-docker/master/config/config.xml  -o /usr/share/jenkins/ref/config.xml &&\
+RUN mkdir -pv /usr/share/jenkins/ref/ && curl  https://raw.githubusercontent.com/fabric8io/jenkins-docker/master/config/config.xml  -o /usr/share/jenkins/ref/config.xml &&\
     curl  https://raw.githubusercontent.com/Kong/jenkins/master/executors.groovy  -o /usr/share/jenkins/ref/init.groovy.d/executors.groovy &&\
     curl  https://raw.githubusercontent.com/fabric8io/jenkins-docker/master/config/load-properties.groovy  -o /usr/share/jenkins/ref/init.groovy.d/load-properties.groovy &&\
     echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state &&\
