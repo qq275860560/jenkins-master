@@ -1,0 +1,8 @@
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+*/1 * * * * root /usr/local/bin/deleteDockerContainer.sh >>/var/log/cron 2>&1
+*/1 * * * * root /usr/local/bin/deleteDockerImage.sh >>/var/log/cron 2>&1
+*/9 * * * * root /usr/local/bin/deleteJenkinsAgent.sh  >> /var/log/cron 2>&1
+0 */6 * * * root /usr/local/bin/syncSonarToMysql.sh  >> /var/log/cron 2>&1
+
