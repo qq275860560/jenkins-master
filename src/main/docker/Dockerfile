@@ -33,14 +33,15 @@ RUN echo 'export JAVA_OPTS="$JAVA_OPTS -Djenkins.install.runSetupWizard=false"' 
     curl  https://raw.githubusercontent.com/fabric8io/jenkins-docker/master/config/load-properties.groovy  -o /usr/share/jenkins/ref/init.groovy.d/load-properties.groovy &&\
     echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state &&\
     curl  https://raw.githubusercontent.com/fabric8io/jenkins-docker/master/config/jenkins.properties  -o /usr/share/jenkins/ref/jenkins.properties &&\
-    curl -o /usr/local/bin/install-plugins.sh https://raw.githubusercontent.com/jenkinsci/docker/587b2856cd225bb152c4abeeaaa24934c75aa460/install-plugins.sh && chmod +x /usr/local/bin/install-plugins.sh &&\
-    cd /usr/share/jenkins/ref/ && curl -O https://raw.githubusercontent.com/Kong/jenkins/master/plugins.txt  &&\
-	/usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt  &&\
-	cd /usr/share/jenkins/ref/ && curl -O https://raw.githubusercontent.com/fabric8io/jenkins-docker/master/plugins.txt  &&\
-    /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
+    curl -o /usr/local/bin/install-plugins.sh https://raw.githubusercontent.com/jenkinsci/docker/587b2856cd225bb152c4abeeaaa24934c75aa460/install-plugins.sh && chmod +x /usr/local/bin/install-plugins.sh 
+    
+#RUN   cd /usr/share/jenkins/ref/ && curl -O https://raw.githubusercontent.com/Kong/jenkins/master/plugins.txt  &&\
+#	/usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt  &&\
+#	cd /usr/share/jenkins/ref/ && curl -O https://raw.githubusercontent.com/fabric8io/jenkins-docker/master/plugins.txt  &&\
+#    /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
-RUN	cd /etc/ && curl -O https://raw.githubusercontent.com/qq275860560/base/master/src/main/centos/etc/crontab  &&\
-    cd /usr/local/bin/ && curl -O https://raw.githubusercontent.com/qq275860560/base/master/src/main/centos/usr/local/bin/deleteJenkinsAgent.sh
+#RUN	cd /etc/ && curl -O https://raw.githubusercontent.com/qq275860560/base/master/src/main/centos/etc/crontab  &&\
+#    cd /usr/local/bin/ && curl -O https://raw.githubusercontent.com/qq275860560/base/master/src/main/centos/usr/local/bin/deleteJenkinsAgent.sh
 	
 #CMD service sshd start ; service jenkins start ; bash	
 	
