@@ -20,7 +20,7 @@ RUN   mkdir -pv /var/lib/jenkins/plugins/ && cd /var/lib/jenkins/plugins/ &&\
       curl -O http://updates.jenkins-ci.org/latest/git-client.hpi &&\
       curl -O http://updates.jenkins-ci.org/latest/scm-api.hpi &&\
       curl -O http://updates.jenkins-ci.org/latest/ssh-credentials.hpi &&\
-      curl -O http://updates.jenkins-ci.org/latest/credentials.hpi &&\
+      curl -O http://updates.jenkins-ci.org/latest/credentials.hpi
 
 RUN   echo 'export JAVA_OPTS="$JAVA_OPTS -Djenkins.install.runSetupWizard=false"'   >> /etc/profile && source /etc/profile   &&\
       echo "export JENKINS_HOME=/var/lib/jenkins/" >> /etc/profile && source /etc/profile   &&\
