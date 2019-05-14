@@ -15,26 +15,28 @@ RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenki
 #/etc/init.d/jenkins 添加java_home路径
 #/etc/sysconfig/jenkins修改运行用户和端口
 
-RUN  echo "export JENKINS_HOME=/var/lib/jenkins/" >> /etc/profile && source /etc/profile   &&\
-      mkdir -pv /var/lib/jenkins/plugins/ && curl -L -o /var/lib/jenkins/plugins/git.hpi http://updates.jenkins-ci.org/latest/git.hpi &&\
-      curl -L -o /var/lib/jenkins/plugins/git-client.hpi http://updates.jenkins-ci.org/latest/git-client.hpi &&\
-      curl -L -o /var/lib/jenkins/plugins/scm-api.hpi http://updates.jenkins-ci.org/latest/scm-api.hpi &&\
-      curl -L -o /var/lib/jenkins/plugins/ssh-credentials.hpi http://updates.jenkins-ci.org/latest/ssh-credentials.hpi &&\
-      curl -L -o /var/lib/jenkins/plugins/credentials.hpi http://updates.jenkins-ci.org/latest/credentials.hpi &&\
+RUN   mkdir -pv /var/lib/jenkins/plugins/ && cd /var/lib/jenkins/plugins/ &&\
+      curl -O http://updates.jenkins-ci.org/latest/git.hpi &&\
+      curl -O http://updates.jenkins-ci.org/latest/git-client.hpi &&\
+      curl -O http://updates.jenkins-ci.org/latest/scm-api.hpi &&\
+      curl -O http://updates.jenkins-ci.org/latest/ssh-credentials.hpi &&\
+      curl -O http://updates.jenkins-ci.org/latest/credentials.hpi &&\
+
+RUN   echo 'export JAVA_OPTS="$JAVA_OPTS -Djenkins.install.runSetupWizard=false"'   >> /etc/profile && source /etc/profile   &&\
+      echo "export JENKINS_HOME=/var/lib/jenkins/" >> /etc/profile && source /etc/profile   &&\
       mkdir -p /var/lib/jenkins/.ssh &&  printf "Host * \nUserKnownHostsFile /dev/null \nStrictHostKeyChecking no" >> /var/lib/jenkins/.ssh/config 
 
-
-
- 
-
-RUN echo 'export JAVA_OPTS="$JAVA_OPTS -Djenkins.install.runSetupWizard=false"'   >> /etc/profile && source /etc/profile   &&\
-	mkdir -pv /usr/share/jenkins/ref/ && curl  https://raw.githubusercontent.com/fabric8io/jenkins-docker/master/config/config.xml  -o /usr/share/jenkins/ref/config.xml &&\
+RUN mkdir -pv /usr/share/jenkins/ref/ && curl  https://raw.githubusercontent.com/fabric8io/jenkins-docker/master/config/config.xml  -o /usr/share/jenkins/ref/config.xml &&\
     mkdir -pv /usr/share/jenkins/ref/init.groovy.d/ && curl  https://raw.githubusercontent.com/Kong/jenkins/master/executors.groovy  -o /usr/share/jenkins/ref/init.groovy.d/executors.groovy &&\
     curl  https://raw.githubusercontent.com/fabric8io/jenkins-docker/master/config/load-properties.groovy  -o /usr/share/jenkins/ref/init.groovy.d/load-properties.groovy &&\
     echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state &&\
-    curl  https://raw.githubusercontent.com/fabric8io/jenkins-docker/master/config/jenkins.properties  -o /usr/share/jenkins/ref/jenkins.properties &&\
-    curl -o /usr/local/bin/install-plugins.sh https://raw.githubusercontent.com/jenkinsci/docker/587b2856cd225bb152c4abeeaaa24934c75aa460/install-plugins.sh && chmod +x /usr/local/bin/install-plugins.sh &&\
-    curl -o /usr/local/bin/jenkins-support https://raw.githubusercontent.com/jenkinsci/docker/587b2856cd225bb152c4abeeaaa24934c75aa460/jenkins-support && chmod +x /usr/local/bin/jenkins-support
+    curl  https://raw.githubusercontent.com/fabric8io/jenkins-docker/master/config/jenkins.properties  -o /usr/share/jenkins/ref/jenkins.properties
+
+RUN cd /usr/local/bin/ &&\
+    curl -O https://raw.githubusercontent.com/jenkinsci/docker/master/install-plugins.sh && chmod +x /usr/local/bin/install-plugins.sh &&\
+    curl -O https://raw.githubusercontent.com/jenkinsci/docker/587b2856cd225bb152c4abeeaaa24934c75aa460/plugins.sh && chmod +x /usr/local/bin/plugins.sh &&\
+    curl -O https://raw.githubusercontent.com/jenkinsci/docker/587b2856cd225bb152c4abeeaaa24934c75aa460/jenkins-support && chmod +x /usr/local/bin/jenkins-support &&\
+    curl -O https://raw.githubusercontent.com/jenkinsci/docker/587b2856cd225bb152c4abeeaaa24934c75aa460/jenkins.sh && chmod +x /usr/local/bin/jenkins.sh
     
 #RUN   cd /usr/share/jenkins/ref/ && curl -O https://raw.githubusercontent.com/Kong/jenkins/master/plugins.txt  &&\
 #	/usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt  &&\
