@@ -33,7 +33,8 @@ RUN echo 'export JAVA_OPTS="$JAVA_OPTS -Djenkins.install.runSetupWizard=false"' 
     curl  https://raw.githubusercontent.com/fabric8io/jenkins-docker/master/config/load-properties.groovy  -o /usr/share/jenkins/ref/init.groovy.d/load-properties.groovy &&\
     echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state &&\
     curl  https://raw.githubusercontent.com/fabric8io/jenkins-docker/master/config/jenkins.properties  -o /usr/share/jenkins/ref/jenkins.properties &&\
-    curl -o /usr/local/bin/install-plugins.sh https://raw.githubusercontent.com/jenkinsci/docker/587b2856cd225bb152c4abeeaaa24934c75aa460/install-plugins.sh && chmod +x /usr/local/bin/install-plugins.sh 
+    curl -o /usr/local/bin/install-plugins.sh https://raw.githubusercontent.com/jenkinsci/docker/587b2856cd225bb152c4abeeaaa24934c75aa460/install-plugins.sh && chmod +x /usr/local/bin/install-plugins.sh &&\
+    curl -o /usr/local/bin/jenkins-support https://raw.githubusercontent.com/jenkinsci/docker/587b2856cd225bb152c4abeeaaa24934c75aa460/jenkins-support && chmod +x /usr/local/bin/jenkins-support
     
 #RUN   cd /usr/share/jenkins/ref/ && curl -O https://raw.githubusercontent.com/Kong/jenkins/master/plugins.txt  &&\
 #	/usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt  &&\
