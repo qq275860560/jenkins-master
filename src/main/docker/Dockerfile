@@ -15,6 +15,10 @@ RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenki
 #/etc/init.d/jenkins 添加java_home路径
 #/etc/sysconfig/jenkins修改运行用户和端口
 
+# 去除启动向导
+RUN   echo 'export JAVA_OPTS="$JAVA_OPTS -Djenkins.install.runSetupWizard=false"'   >> /etc/profile && source /etc/profile   &&\
+     mkdir -pv /var/lib/jenkins/ref/init.groovy.d/ && curl  https://raw.githubusercontent.com/qq275860560/jenkins-master/master/src/main/centos/var/lib/jenkins/ref/init.groovy.d/basic-security.groovy
+
 # 设置admin密码为123456
 #RUN service jenkins start &&\
 #    sleep 60s &&\
@@ -23,8 +27,8 @@ RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenki
 #    echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount("admin", "123456")' | java -jar jenkins-cli.jar -auth admin:$pass -s http://localhost:8080/ groovy =
 
 # 初始化
-#RUN   echo 'export JAVA_OPTS="$JAVA_OPTS -Djenkins.install.runSetupWizard=false"'   >> /etc/profile && source /etc/profile   &&\
-#      echo "export JENKINS_HOME=/var/lib/jenkins/" >> /etc/profile && source /etc/profile   &&\
+
+#RUN  echo "export JENKINS_HOME=/var/lib/jenkins/" >> /etc/profile && source /etc/profile   &&\
 #      mkdir -p /var/lib/jenkins/.ssh &&  printf "Host * \nUserKnownHostsFile /dev/null \nStrictHostKeyChecking no" >> /var/lib/jenkins/.ssh/config 
 #RUN mkdir -pv /usr/share/jenkins/ref/ && curl  https://raw.githubusercontent.com/fabric8io/jenkins-docker/master/config/config.xml  -o /usr/share/jenkins/ref/config.xml &&\
 #    mkdir -pv /usr/share/jenkins/ref/init.groovy.d/ && curl  https://raw.githubusercontent.com/Kong/jenkins/master/executors.groovy  -o /usr/share/jenkins/ref/init.groovy.d/executors.groovy &&\
@@ -59,5 +63,3 @@ RUN   mkdir -pv /var/lib/jenkins/plugins/ && cd /var/lib/jenkins/plugins/ &&\
 #CMD service sshd start ; service jenkins start ; bash	
 
  
-	
-	
