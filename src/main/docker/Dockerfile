@@ -17,13 +17,13 @@ RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenki
 
 # 去除启动向导
 #RUN  echo 'export JAVA_OPTS="$JAVA_OPTS -Djenkins.install.runSetupWizard=false"'   >> /etc/profile && source /etc/profile   &&\
-     mkdir -pv /var/lib/jenkins/init.groovy.d/ &&\
-     cd /var/lib/jenkins/init.groovy.d/ && curl  -O https://raw.githubusercontent.com/qq275860560/jenkins-master/master/src/main/centos/var/lib/jenkins/init.groovy.d/default-user.groovy  &&\
-     cd /var/lib/jenkins/init.groovy.d/ && curl  -O https://raw.githubusercontent.com/qq275860560/jenkins-master/master/src/main/centos/var/lib/jenkins/init.groovy.d/basic-security.groovy  &&\
-	service jenkins start &&\
-	sleep 60s &&\
-	rm -rf /var/lib/jenkins/init.groovy.d/default-user.groovy \
-	rm -rf /var/lib/jenkins/init.groovy.d/basic-security.groovy
+#     mkdir -pv /var/lib/jenkins/init.groovy.d/ &&\
+#     cd /var/lib/jenkins/init.groovy.d/ && curl  -O https://raw.githubusercontent.com/qq275860560/jenkins-master/master/src/main/centos/var/lib/jenkins/init.groovy.d/remove-setup-wizard.groovy  &&\
+#     cd /var/lib/jenkins/init.groovy.d/ && curl  -O https://raw.githubusercontent.com/qq275860560/jenkins-master/master/src/main/centos/var/lib/jenkins/init.groovy.d/basic-security.groovy  &&\
+#	service jenkins start &&\
+#	sleep 60s &&\
+#	rm -rf /var/lib/jenkins/init.groovy.d/remove-setup-wizard.groovy \
+#	rm -rf /var/lib/jenkins/init.groovy.d/basic-security.groovy
 	
 # 设置admin密码为123456
 #RUN service jenkins start &&\
