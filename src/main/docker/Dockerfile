@@ -16,11 +16,11 @@ RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenki
 #/etc/sysconfig/jenkins修改运行用户和端口
 
 # 设置admin密码为123456
-RUN service jenkins start &&\
-    sleep 60s &&\
-    cd /var/cache/jenkins/war/WEB-INF/ &&\
-    pass=`cat /var/lib/jenkins/secrets/initialAdminPassword` &&\
-    echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount("admin", "123456")' | java -jar jenkins-cli.jar -auth admin:$pass -s http://localhost:8080/ groovy =
+#RUN service jenkins start &&\
+#    sleep 60s &&\
+#    cd /var/cache/jenkins/war/WEB-INF/ &&\
+#    pass=`cat /var/lib/jenkins/secrets/initialAdminPassword` &&\
+#    echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount("admin", "123456")' | java -jar jenkins-cli.jar -auth admin:$pass -s http://localhost:8080/ groovy =
 
 # 初始化
 #RUN   echo 'export JAVA_OPTS="$JAVA_OPTS -Djenkins.install.runSetupWizard=false"'   >> /etc/profile && source /etc/profile   &&\
