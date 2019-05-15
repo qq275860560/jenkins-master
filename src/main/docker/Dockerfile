@@ -16,7 +16,7 @@ RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenki
 #/etc/sysconfig/jenkins修改运行用户和端口
 
 RUN service jenkins start &&\
-    sleep 20s &&\
+    sleep 60s &&\
     cd /var/cache/jenkins/war/WEB-INF/ &&\
     pass=`cat /var/lib/jenkins/secrets/initialAdminPassword` &&\
     echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount("admin", "123456")' | java -jar jenkins-cli.jar -auth admin:$pass -s http://localhost:8080/ groovy =
