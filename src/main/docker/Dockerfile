@@ -15,6 +15,12 @@ RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenki
 #/etc/init.d/jenkins 添加java_home路径
 #/etc/sysconfig/jenkins修改运行用户和端口
 
+RUN service jenkins start &&\
+    sleep 20s &&\
+    cd /var/cache/jenkins/war/WEB-INF/ &&\
+    pass=`cat /var/lib/jenkins/secrets/initialAdminPassword` &&\
+    echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount("admin", "123456")' | java -jar jenkins-cli.jar -auth admin:$pass -s http://localhost:8080/ groovy =
+
 RUN   mkdir -pv /var/lib/jenkins/plugins/ && cd /var/lib/jenkins/plugins/ &&\
       curl -O http://updates.jenkins-ci.org/latest/git.hpi &&\
       curl -O http://updates.jenkins-ci.org/latest/git-client.hpi &&\
@@ -47,4 +53,7 @@ RUN cd /usr/local/bin/ &&\
 #    cd /usr/local/bin/ && curl -O https://raw.githubusercontent.com/qq275860560/base/master/src/main/centos/usr/local/bin/deleteJenkinsAgent.sh
 	
 #CMD service sshd start ; service jenkins start ; bash	
+
+ 
+	
 	
