@@ -6,7 +6,7 @@ MAINTAINER jiangyuanlin@163.com
 RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo && \
     rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key && \
     yum -y  install  jenkins && yum -y update jenkins &&\
-    yum clean all && rm -rf /var/cache/yum/* 
+    yum -y clean all && rm -rf /var/cache/yum/*  /tmp/* /var/tmp/*
 
 #/usr/lib/jenkins/：jenkins安装目录，war包会放在这里。
 #/etc/sysconfig/jenkins：jenkins配置文件，“端口”，“JENKINS_HOME”等都可以在这里配置。
