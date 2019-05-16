@@ -42,12 +42,12 @@ RUN service jenkins start &&\
 #    curl  https://raw.githubusercontent.com/fabric8io/jenkins-docker/master/config/jenkins.properties  -o /usr/share/jenkins/ref/jenkins.properties
 
 # 安装常用插件
-RUN   mkdir -pv /var/lib/jenkins/plugins/ && cd /var/lib/jenkins/plugins/ &&\
-      curl -O http://updates.jenkins-ci.org/latest/git.hpi &&\
-      curl -O http://updates.jenkins-ci.org/latest/git-client.hpi &&\
-      curl -O http://updates.jenkins-ci.org/latest/scm-api.hpi &&\
-      curl -O http://updates.jenkins-ci.org/latest/ssh-credentials.hpi &&\
-      curl -O http://updates.jenkins-ci.org/latest/credentials.hpi
+#RUN   mkdir -pv /var/lib/jenkins/plugins/ && cd /var/lib/jenkins/plugins/ &&\
+#      curl -O http://updates.jenkins-ci.org/latest/git.hpi &&\
+#      curl -O http://updates.jenkins-ci.org/latest/git-client.hpi &&\
+#      curl -O http://updates.jenkins-ci.org/latest/scm-api.hpi &&\
+#      curl -O http://updates.jenkins-ci.org/latest/ssh-credentials.hpi &&\
+#      curl -O http://updates.jenkins-ci.org/latest/credentials.hpi
 
 #RUN cd /usr/local/bin/ &&\
 #    curl -O https://raw.githubusercontent.com/jenkinsci/docker/master/install-plugins.sh && chmod +x /usr/local/bin/install-plugins.sh &&\
