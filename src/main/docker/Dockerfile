@@ -8,14 +8,13 @@ RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenki
     yum -y  install  jenkins && yum -y update jenkins &&\
     yum -y clean all && rm -rf /var/cache/yum/*  /tmp/* /var/tmp/*
 
-#/usr/lib/jenkins/：war包下载到这里
-#/etc/sysconfig/jenkins：jenkins配置文件，修改端口,JENKINS_HOME
-#/var/lib/jenkins/：默认的JENKINS_HOME。
-#/var/log/jenkins/jenkins.log：jenkins日志文件。
+#/usr/lib/jenkins/:war包下载到这里
+#/etc/sysconfig/jenkins:jenkins配置文件，修改端口,JENKINS_HOME
+#/var/lib/jenkins/:JENKINS_HOME。
+#/var/log/jenkins/jenkins.log:jenkins日志文件。
 
-
-RUN yum -y  install  inotify-tools
-
+RUN mkdir -pv /var/lib/jenkins/ && cd /var/lib/jenkins/ && curl  -O https://raw.githubusercontent.com/qq275860560/jenkins-master/master/src/main/centos/var/lib/jenkins/config.xml
+#RUN yum -y  install  inotify-tools && inotifywait -mrq   /etc/sysconfig/jenkins >> /var/log/inotifywait.log &    
 
 
 
