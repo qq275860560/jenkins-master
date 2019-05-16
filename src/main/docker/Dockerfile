@@ -8,12 +8,14 @@ RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenki
     yum -y  install  jenkins && yum -y update jenkins &&\
     yum -y clean all && rm -rf /var/cache/yum/*  /tmp/* /var/tmp/*
 
-#/usr/lib/jenkins/：jenkins安装目录，war包会放在这里。
+#/usr/lib/jenkins/：war包下载到这里。
 #/etc/sysconfig/jenkins：jenkins配置文件，“端口”，“JENKINS_HOME”等都可以在这里配置。
 #/var/lib/jenkins/：默认的JENKINS_HOME。
 #/var/log/jenkins/jenkins.log：jenkins日志文件。
 #/etc/init.d/jenkins 添加java_home路径
 #/etc/sysconfig/jenkins修改运行用户和端口
+
+RUN yum -y  install  inotify-tools
 
 # 去除启动向导
 #RUN  echo 'export JAVA_OPTS="$JAVA_OPTS -Djenkins.install.runSetupWizard=false"'   >> /etc/profile && source /etc/profile   &&\
@@ -26,10 +28,10 @@ RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenki
 #	rm -rf /var/lib/jenkins/init.groovy.d/basic-security.groovy
 	
 # 设置admin密码为123456
-RUN service jenkins start &&\
-    sleep 60s &&\
-    pass=`cat /var/lib/jenkins/secrets/initialAdminPassword` &&\
-    echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount("admin1", "123456")' | java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -auth admin:$pass -s http://localhost:8080/ groovy =
+#RUN service jenkins start &&\
+#    sleep 60s &&\
+#    pass=`cat /var/lib/jenkins/secrets/initialAdminPassword` &&\
+#    echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount("admin1", "123456")' | java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -auth admin:$pass -s http://localhost:8080/ groovy =
 
 # 初始化
 
