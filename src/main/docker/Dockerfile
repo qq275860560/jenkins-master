@@ -8,14 +8,16 @@ RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenki
     yum -y  install  jenkins && yum -y update jenkins &&\
     yum -y clean all && rm -rf /var/cache/yum/*  /tmp/* /var/tmp/*
 
-#/usr/lib/jenkins/：war包下载到这里。
-#/etc/sysconfig/jenkins：jenkins配置文件，“端口”，“JENKINS_HOME”等都可以在这里配置。
+#/usr/lib/jenkins/：war包下载到这里
+#/etc/sysconfig/jenkins：jenkins配置文件，修改端口,JENKINS_HOME
 #/var/lib/jenkins/：默认的JENKINS_HOME。
 #/var/log/jenkins/jenkins.log：jenkins日志文件。
-#/etc/init.d/jenkins 添加java_home路径
-#/etc/sysconfig/jenkins修改运行用户和端口
+
 
 RUN yum -y  install  inotify-tools
+
+
+
 
 # 去除启动向导
 #RUN  echo 'export JAVA_OPTS="$JAVA_OPTS -Djenkins.install.runSetupWizard=false"'   >> /etc/profile && source /etc/profile   &&\
@@ -67,6 +69,8 @@ RUN yum -y  install  inotify-tools
 #RUN cd /etc/ && curl -O https://raw.githubusercontent.com/qq275860560/base/master/src/main/centos/etc/crontab  &&\
 #    cd /usr/local/bin/ && curl -O https://raw.githubusercontent.com/qq275860560/base/master/src/main/centos/usr/local/bin/deleteJenkinsAgent.sh
 	
-#CMD service sshd start ; service jenkins start ; bash	
+CMD source /etc/profile &&\
+     service sshd start &&\
+     service jenkins start 	
 
  
