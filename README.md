@@ -11,8 +11,8 @@ jenkins主节点镜像
 
 # 使用方式
 ```
-(docker kill jenkins-master || true) && (docker rm jenkins-master || true) 
 docker pull qq275860560/jenkins-master
+(docker kill jenkins-master || true) && (docker rm jenkins-master || true) 
 docker run -d -p 8080:8080 --name jenkins-master qq275860560/jenkins-master 
 
 ```
@@ -20,14 +20,14 @@ docker run -d -p 8080:8080 --name jenkins-master qq275860560/jenkins-master
 或者
 
 ```
-(docker kill jenkins-master || true) && (docker rm jenkins-master || true) 
 docker pull qq275860560/jenkins-master
+(docker kill jenkins-master || true) && (docker rm jenkins-master || true) 
 docker run -it -p 8080:8080 --name jenkins-master qq275860560/jenkins-master /bin/bash
 
 # 容器内执行
 source /etc/profile &&\
     /usr/sbin/sshd &&\
-     service jenkins start 		
+    /etc/rc.d/init.d/jenkins start && tail -f /var/log/lastlog 		
 
 ```
 

@@ -69,7 +69,7 @@ RUN mkdir -pv /var/lib/jenkins/ && cd /var/lib/jenkins/ && curl  -O https://raw.
 #    cd /usr/local/bin/ && curl -O https://raw.githubusercontent.com/qq275860560/base/master/src/main/centos/usr/local/bin/deleteJenkinsAgent.sh
 	
 CMD source /etc/profile &&\
-     service sshd start &&\
-     service jenkins start 	
+    /usr/sbin/sshd &&\
+    /etc/rc.d/init.d/jenkins start && tail -f /var/log/lastlog 		
 
  
