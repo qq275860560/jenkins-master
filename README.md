@@ -10,9 +10,24 @@ jenkins主节点镜像
 ## 自动删除离线从节点
 
 # 使用方式
-Dockerfile最前面添加
 ```
-docker run
+(docker kill jenkis-master || true) && (docker rm jenkis-master || true) 
+docker pull qq275860560/jenkis-master
+docker run -d -p 3306:3306 --name jenkis-master qq275860560/jenkis-master 
+
+```
+
+或者
+
+```
+(docker kill jenkis-master || true) && (docker rm jenkis-master || true) 
+docker pull qq275860560/jenkis-master
+docker run -it -p 3306:3306 --name jenkis-master qq275860560/jenkis-master /bin/bash
+
+# 容器内执行
+source /etc/profile &&\
+    /usr/sbin/sshd &&\
+     service jenkins start 		
 
 ```
 
