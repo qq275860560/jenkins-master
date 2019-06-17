@@ -11,18 +11,18 @@ jenkins主节点镜像
 
 # 使用方式
 ```
-(docker kill jenkis-master || true) && (docker rm jenkis-master || true) 
-docker pull qq275860560/jenkis-master
-docker run -d -p 3306:3306 --name jenkis-master qq275860560/jenkis-master 
+(docker kill jenkins-master || true) && (docker rm jenkins-master || true) 
+docker pull qq275860560/jenkins-master
+docker run -d -p 8080:8080 --name jenkins-master qq275860560/jenkins-master 
 
 ```
 
 或者
 
 ```
-(docker kill jenkis-master || true) && (docker rm jenkis-master || true) 
-docker pull qq275860560/jenkis-master
-docker run -it -p 3306:3306 --name jenkis-master qq275860560/jenkis-master /bin/bash
+(docker kill jenkins-master || true) && (docker rm jenkins-master || true) 
+docker pull qq275860560/jenkins-master
+docker run -it -p 8080:8080 --name jenkins-master qq275860560/jenkins-master /bin/bash
 
 # 容器内执行
 source /etc/profile &&\
